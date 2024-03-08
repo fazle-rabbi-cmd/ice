@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ice/screens/home_screen.dart';
-import 'package:ice/screens/hourly_forecast_screen.dart';
-import 'package:ice/screens/daily_forecast_screen.dart';
-import 'package:ice/screens/extended_forecast_screen.dart';
-import 'package:ice/screens/location_management_screen.dart';
-import 'package:ice/screens/search_screen.dart';
-import 'package:ice/screens/settings_screen.dart';
-import 'package:ice/screens/severe_weather_alerts.dart';
-import 'package:ice/screens/weather_details_screen.dart';
-import 'package:ice/screens/weather_map_screen.dart';
+import 'package:ice/models/theme_model.dart';
+import 'package:ice/models/locale_model.dart'; // Import the LocaleModel class
 
-import 'models/theme_model.dart';
+import 'screens/home_screen.dart';
+import 'screens/hourly_forecast_screen.dart';
+import 'screens/daily_forecast_screen.dart';
+import 'screens/extended_forecast_screen.dart';
+import 'screens/location_management_screen.dart';
+import 'screens/search_screen.dart';
+import 'screens/settings_screen.dart';
+import 'screens/severe_weather_alerts.dart';
+import 'screens/weather_details_screen.dart';
+import 'screens/weather_map_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeModel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeModel()),
+        ChangeNotifierProvider(
+            create: (_) => LocaleModel()), // Provide the LocaleModel here
+      ],
       child: MyApp(),
     ),
   );
