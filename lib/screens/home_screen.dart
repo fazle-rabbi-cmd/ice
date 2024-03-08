@@ -9,23 +9,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<Weather>? _weatherFuture;
+  late Future<Weather> _weatherFuture;
   final Location _location = Location();
 
   @override
   void initState() {
     super.initState();
-    _fetchWeather();
+    _weatherFuture = _fetchWeather();
   }
 
-  Future<void> _fetchWeather() async {
+  Future<Weather> _fetchWeather() async {
     try {
       final locationData = await _location.getLocation();
       final latitude = locationData.latitude!;
       final longitude = locationData.longitude!;
-      _weatherFuture = WeatherService.fetchWeather(latitude, longitude);
+      return WeatherService.fetchWeather(latitude, longitude);
     } catch (e) {
       print('Error getting location: $e');
+      throw e; // Rethrow the error to handle it in FutureBuilder
     }
   }
 
@@ -35,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
       future: _weatherFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
+          return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
           final weather = snapshot.data!;
           return Column(
@@ -114,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         } else {
-          return Center(child: Text('No data'));
+          return Text('No data');
         }
       },
     );
