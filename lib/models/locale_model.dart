@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
 class LocaleModel extends ChangeNotifier {
-  late Locale _currentLocale;
+  Locale _locale = Locale('en'); // Default locale is English
 
-  Locale get currentLocale => _currentLocale;
+  Locale get locale => _locale;
 
-  LocaleModel() {
-    // Initialize with the default locale (English)
-    _currentLocale = Locale('en');
-  }
+  Locale get currentLocale => _locale; // Add this getter
 
-  void setLocale(Locale locale) {
-    _currentLocale = locale;
-    notifyListeners();
+  void setLocale(Locale newLocale) {
+    if (_locale != newLocale) {
+      _locale = newLocale;
+      notifyListeners();
+    }
   }
 }

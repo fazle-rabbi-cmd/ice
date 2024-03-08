@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "ICE",
+    "home": "Home",
+    "hourly": "Hourly",
+    "daily": "Daily",
+    "extended": "Extended",
+    "menu": "Menu",
+    "location_management": "Location Management",
+    "search_locations": "Search Locations",
+    "settings": "Settings",
+    "weather_map": "Weather Map",
+    "weather_details": "Weather Details",
+    "alerts": "Alerts"
+  },
+  "bn": {
+    "title": "ICE",
+    "home": "হোম",
+    "hourly": "প্রতি ঘণ্টা",
+    "daily": "প্রতিদিন",
+    "extended": "এক্সটেন্ডেড",
+    "menu": "মেনু",
+    "location_management": "লোকেশন ম্যানেজমেন্ট",
+    "search_locations": "লোকেশন অনুসন্ধান",
+    "settings": "সেটিংস",
+    "weather_map": "আবহাওয়া ম্যাপ",
+    "weather_details": "আবহাওয়া বিবরণ",
+    "alerts": "সতর্কতা"
+  },
+  "hi": {
+    "title": "ICE",
+    "home": "होम",
+    "hourly": "प्रति घंटा",
+    "daily": "दैनिक",
+    "extended": "विस्तृत",
+    "menu": "मेनू",
+    "location_management": "स्थान प्रबंधन",
+    "search_locations": "स्थान खोजें",
+    "settings": "सेटिंग्स",
+    "weather_map": "मौसम नक्शा",
+    "weather_details": "मौसम विवरण",
+    "alerts": "चेतावनियाँ"
+  }
+}

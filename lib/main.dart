@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ice/models/theme_model.dart';
-import 'package:ice/models/locale_model.dart'; // Import the LocaleModel class
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_localizations/flutter_localizations.dart'; // Import flutter_localizations
+
+import 'models/theme_model.dart';
+import 'models/locale_model.dart';
+import 'app_localizations.dart'; // Import the AppLocalizations class
 
 import 'screens/home_screen.dart';
 import 'screens/hourly_forecast_screen.dart';
@@ -19,8 +23,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeModel()),
-        ChangeNotifierProvider(
-            create: (_) => LocaleModel()), // Provide the LocaleModel here
+        ChangeNotifierProvider(create: (_) => LocaleModel()),
       ],
       child: MyApp(),
     ),
@@ -34,6 +37,19 @@ class MyApp extends StatelessWidget {
       title: 'ICE',
       theme: Provider.of<ThemeModel>(context).currentTheme,
       home: MyHomePage(),
+      supportedLocales: [
+        const Locale('en', ''), // English
+        const Locale('bn', ''), // Bangla
+        const Locale('hi', ''), // Hindi
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate, // Add this line
+      ],
+      // Specify the locale that your app should use initially
+      locale: Provider.of<LocaleModel>(context).locale,
     );
   }
 }
